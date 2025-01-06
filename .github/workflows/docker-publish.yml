@@ -127,7 +127,7 @@ jobs:
           ls -a
       - name: SSH into server and pull new Docker image
         run: |
-          ssh -i github_actions_key.pem -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
+          ssh -i ~/.ssh/github_actions_key.pem -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
             docker ps
           EOF
       # - name: SSH into the server and pull latest image
