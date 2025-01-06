@@ -114,8 +114,8 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_actions_key.pem
-          chmod 600 ~/.ssh/github_actions_key.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_actions_key
+          chmod 600 ~/.ssh/github_actions_key
           ssh-keyscan -H github.com >> ~/.ssh/known_hosts
       # - name: Set up SSH key
       #   run: |
@@ -127,7 +127,7 @@ jobs:
           ls -a
       - name: SSH into server and pull new Docker image
         run: |
-          ssh -i ~/.ssh/github_actions_key.pem -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
+          ssh -i ~/.ssh/github_actions_key -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
             docker ps
           EOF
       # - name: SSH into the server and pull latest image
