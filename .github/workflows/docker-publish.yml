@@ -109,7 +109,7 @@ jobs:
     steps:
       
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Configure SSH
         run: |
@@ -127,8 +127,8 @@ jobs:
           SSH_USER: ${{ secrets.STAGING_SSH_USER }}
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
-      - name: Test command
+      - name: Check files
         run: ssh staging 'ls -a'
-      - name: Check file
-        run: ssh staging 'cat docker-compose.yml'
+      - name: Pull code
+        run: ssh staging 'cd ~/dev/simple-node && git pull && docker-compose pull && docker-compose up -d'
   
