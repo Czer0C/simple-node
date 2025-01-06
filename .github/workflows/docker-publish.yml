@@ -128,5 +128,7 @@ jobs:
           SSH_KEY: ${{ secrets.STAGING_SSH_KEY }}
           SSH_HOST: ${{ secrets.STAGING_SSH_HOST }}
       - name: Test command
-        run: ssh staging 'sudo docker ps'
+        run: ssh staging 'ls -a'
+      - name: Check file
+        run: ssh staging 'cat docker-compose.yml'
   
