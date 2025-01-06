@@ -129,7 +129,11 @@ jobs:
     # needs: deploy
     steps:
       - name: send noti discord
-      - run: |
+        run: |
           curl -X POST -H "Content-Type: application/json" \
           -d '{"content": "**Workflow: ${GITHUB_WORKFLOW}**\n**Repository:** ${GITHUB_REPOSITORY}\n**Status:** ${JOB_STATUS}"}' \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
+        env:
+          GITHUB_WORKFLOW: ${{ github.workflow }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          JOB_STATUS: ${{ job.status }}
