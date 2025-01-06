@@ -4,7 +4,6 @@ require('dotenv').config()
 
 const PORT = process.env.SERVICE_PORT || 5000
 
-
 const app = express()
 
 const cors = require('cors')
@@ -17,7 +16,7 @@ app.use(express.urlencoded({ extended: true })) // for URL-encoded bodies
 
 
 app.get('/', (req, res) => {
-    res.send('Suffering from success')
+    res.send('We the best')
 })
 
 app.listen(PORT, () => {
