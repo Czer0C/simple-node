@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    image: prod:blue
+    build: .
+    ports:
+      - "5001:5000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      NODE_ENV: development
