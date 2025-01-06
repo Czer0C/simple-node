@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true })) // for URL-encoded bodies
 
 
 app.get('/', (req, res) => {
-    res.send('We the best')
+    res.send('You smart')
 })
 
 app.listen(PORT, () => {
