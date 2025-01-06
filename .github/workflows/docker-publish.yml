@@ -122,5 +122,9 @@ jobs:
             # docker-compose down
             # docker-compose up -d
           EOF
+          rm -f private_key.pem
+      - name: check files
+        run: |
+          ls -a
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
