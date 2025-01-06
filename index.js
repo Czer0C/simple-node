@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true })) // for URL-encoded bodies
 
 
 app.get('/', (req, res) => {
-    res.send('ANOTHER ONE 2')
+    res.send('Suffering from success')
 })
 
 app.listen(PORT, () => {
