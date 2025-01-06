@@ -36,9 +36,9 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    # steps:
+    #   - name: Checkout repository
+    #     uses: actions/checkout@v4
 
   #     # Install the cosign tool except on PR
   #     # https://github.com/sigstore/cosign-installer
@@ -105,24 +105,35 @@ jobs:
     steps:
       
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Set up SSH key
+      - name: Set up SSH
         run: |
-          echo "$SSH_PRIVATE_KEY" > private_key.pem
-          chmod 600 private_key.pem
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_actions_key.pem
+          chmod 600 ~/.ssh/github_actions_key.pem
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+      # - name: Set up SSH key
+      #   run: |
+      #     echo "$SSH_PRIVATE_KEY" > private_key.pem
+      #     chmod 600 private_key.pem
+
       - name: check files
         run: |
           ls -a
-
-      - name: SSH into the server and pull latest image
+      - name: SSH into server and pull new Docker image
         run: |
-          ssh -i private_key.pem -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
-            # docker pull ghcr.io/your-username/your-repository:latest
-            # docker-compose down
-            # docker-compose up -d
+          ssh -i github_actions_key.pem -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
+            docker ps
           EOF
-          rm -f private_key.pem
+      # - name: SSH into the server and pull latest image
+      #   run: |
+      #     ssh -i private_key.pem -o StrictHostKeyChecking=no trieunguyen04239@34.59.232.22 << 'EOF'
+      #       # docker pull ghcr.io/your-username/your-repository:latest
+      #       # docker-compose down
+      #       # docker-compose up -d
+      #     EOF
+      #     rm -f private_key.pem
       - name: check files
         run: |
           ls -a
