@@ -31,7 +31,6 @@ jobs:
       - name: Check connection to remote server
         run: | 
           ip address show
-          ping 34.59.232.22
 
   # build:
   #   runs-on: ubuntu-latest
