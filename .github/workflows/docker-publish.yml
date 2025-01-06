@@ -131,5 +131,5 @@ jobs:
       - name: send noti discord
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d '{"content": "Workflow: ${{ github.workflow }} \nRepository: ${{ github.repository }}\nStatus: ${{ job.status }} " }' \
+          -d '{"content": "GCP CI/CD\n Repository: ${{ github.repository }}\nStatus: **${{ job.status }}** " }' \
           ${{ secrets.DISCORD_WEBHOOK_URL }}
