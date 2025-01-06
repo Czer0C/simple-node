@@ -126,7 +126,7 @@ jobs:
         run: rm -f ~/.ssh/staging.key
   notification:
     runs-on: ubuntu-latest
-    # needs: deploy
+    needs: deploy
     steps:
       - name: send noti discord
         run: |
