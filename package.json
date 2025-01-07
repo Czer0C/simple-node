@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dc:update": "docker-compose pull && docker-compose up -d",
+    "dc:rebuild": "docker-compose down && docker-compose up -d",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
