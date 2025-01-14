@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
 
-  const time = new Date().toLocaleTimeString();
+  const time = new Date().toISOString().replace('T', ' ').replace('Z', '')
 
   const log = {
     ip, time
