@@ -8,6 +8,9 @@ name: Docker
 on:
   push:
     paths-ignore:
+      - '.gitignore'
+      - '.dockerignore'
+      - '.prettierrc'
       - 'README.md'
       - 'package.json'
     branches: [ "main" ]
