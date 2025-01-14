@@ -14,17 +14,22 @@ app.use(express.json());
 // for JSON bodies
 app.use(express.urlencoded({ extended: true })); // for URL-encoded bodies
 
-const list = ['You smart', 'You genius', 'You loyal', 'I Appreciate you'];
 
 app.get('/', (req, res) => {
 
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-  console.log(ip);
 
-  const rand = Math.floor(Math.random() * 100) % 4;
+  const time = new Date().toLocaleTimeString();
 
-  res.send(`${list[rand]}`);
+  const log = {
+    ip, time
+  }
+
+  console.log(log);
+
+  res.json(log)
+
 });
 
 app.listen(PORT, () => {
