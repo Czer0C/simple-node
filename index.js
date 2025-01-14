@@ -17,6 +17,11 @@ app.use(express.urlencoded({ extended: true })); // for URL-encoded bodies
 const list = ['You smart', 'You genius', 'You loyal', 'I Appreciate you'];
 
 app.get('/', (req, res) => {
+
+  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+  console.log(ip);
+
   const rand = Math.floor(Math.random() * 100) % 4;
 
   res.send(`${list[rand]}`);
