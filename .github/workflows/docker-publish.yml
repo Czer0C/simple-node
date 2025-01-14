@@ -40,6 +40,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: create .env
+        run: echo "${{ secrets.ENV_FILE }}" > .env | ls -a
+
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
