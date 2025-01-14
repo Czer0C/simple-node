@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "docker build -t simple-node-app .",
+    "serve": "docker run -d -p 5000:5000 --name simple-node-app simple-node-app",
     "dc:update": "docker-compose pull && docker-compose up -d",
     "dc:rebuild": "docker-compose down && docker-compose up -d",
     "start": "node index.js",

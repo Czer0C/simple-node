@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  mongo:
-    image: mongo:8.0.3-noble
-    volumes:
-      - mongo-data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    ports:
-      - "27017:27017"
+  # mongo:
+  #   image: mongo:8.0.3-noble
+  #   volumes:
+  #     - mongo-data:/data/db
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+  #     MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  #   ports:
+  #     - "27017:27017"
   app:
     image: ghcr.io/czer0c/simple-node:main  # Using the pre-built image from GHCR
     container_name: simple-node-app
@@ -19,8 +19,8 @@ services:
     environment:
       - NODE_ENV=production  # You can set environment variables as needed
     restart: unless-stopped
-volumes:
-  mongo-data:
+# volumes:
+#   mongo-data:
 
 # version: '3.8'
 
