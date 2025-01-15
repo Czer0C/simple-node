@@ -23,7 +23,6 @@ app.use(express.json());
 // for JSON bodies
 app.use(express.urlencoded({ extended: true })); // for URL-encoded bodies
 
-
 // ! POSTGRES
 // ! ------------------
 
