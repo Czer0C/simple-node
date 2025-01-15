@@ -6,4 +6,4 @@ class MyUser(HttpUser):
 
     @task
     def send_request(self):
-        self.client.get("/")  # Replace with your server's endpoint
+        self.client.get("/log")  # Replace with your server's endpoint
