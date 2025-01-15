@@ -48,18 +48,20 @@ app.use(async (req, res, next) => {
 
     const elapsedTime = (diff[0] * 1e3 + diff[1] / 1e6).toFixed(2); // Convert to milliseconds
 
+    const time = new Date().toISOString().replace('T', ' ').replace('Z', '')
+
     const processInfo = {
       method: req.method,
       url: req.originalUrl,
       statusCode: res.statusCode,
       elapsedTime: `${elapsedTime} ms`,
-      ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
-      time: new Date().toISOString().replace('T', ' ').replace('Z', ''),
+      ip: req.headers['x-forwarded-for'] || null,
+      time,
       headers: req.headers
     }
 
     Log.create(processInfo).then(log => {
-      console.log(`Log saved, elapsed time: ${elapsedTime} ms`);
+      console.log(`${time}, elapsed time: ${elapsedTime} ms`);
     }).catch(err => {
       console.error('Error saving log', err);
     });
@@ -68,9 +70,9 @@ app.use(async (req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
+app.get('/log', (req, res) => {
 
-  const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const ip = req.headers['x-forwarded-for'] || null;
 
   const time = new Date().toISOString().replace('T', ' ').replace('Z', '')
 
