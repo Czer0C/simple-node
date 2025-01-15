@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 const MONGO_URI = process.env.MONGO_URI;
 
-console.log(MONGO_URI);
+console.log({ MONGO_URI });
 
 const PORT = process.env.SERVICE_PORT || 5000;
 
@@ -80,6 +80,15 @@ app.get('/', (req, res) => {
 
   res.json(log)
 });
+
+// app.get('/logs', (req, res) => {
+//   Log.find().then(logs => {
+//     res.json(logs)
+//   }).catch(err => {
+//     console.error('Error getting logs', err);
+//     res.status(500).send('Error getting logs');
+//   });
+// });
 
 app.listen(PORT, () => {
   console.log('Server is running on port ' + PORT);
