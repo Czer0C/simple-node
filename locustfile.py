@@ -6,4 +6,4 @@ class MyUser(HttpUser):
 
     @task
     def send_request(self):
-        self.client.get("/pgLog")  # Replace with your server's endpoint
+        self.client.get("/pgLastLog")  # Replace with your server's endpoint
