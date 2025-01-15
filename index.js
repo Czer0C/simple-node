@@ -8,7 +8,6 @@ const {
   mongoosePop
 } = require('./mongoose')
 
-
 const PORT = process.env.SERVICE_PORT || 5000;
 
 const app = express();
