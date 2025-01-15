@@ -1,12 +1,18 @@
 const postgres = require('pg')
 
-const client = new postgres.Client({
-	user: process.env.PG_USER,
-	host: process.env.PG_HOST,
-	database: process.env.PG_DATABASE,
-	password: process.env.PG_PASSWORD,
-	port: process.env.PG_PORT
-})
+const {
+	PG_HOST,
+	PG_PORT,
+	PG_USER,
+	PG_PASSWORD,
+	PG_DATABASE
+} = process.env
+
+const connStr = `postgresql://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/${PG_DATABASE}`
+
+console.log({ connStr });
+
+const client = new postgres.Client(connStr)
 
 client.connect().then(() => {
 	console.log('Connected to Postgres')
